@@ -7,6 +7,7 @@ package ng.apresentacao;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import ng.negocio.Crianca;
+import ng.negocio.Estadia;
 import ng.negocio.Responsavel;
 
 /**
@@ -148,6 +149,9 @@ public class DadosCrianca extends javax.swing.JFrame {
             crianca.setNome(nome);
             crianca.setIdade(Integer.valueOf(idade));
             crianca.setSexo(sexo);
+            DadosEstadia telaDadosEstadia = new DadosEstadia(crianca);
+            telaDadosEstadia.setLocationRelativeTo(null);
+            telaDadosEstadia.setVisible(true);
             this.dispose();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "A idade deve ser um número válido", "Erro", JOptionPane.ERROR_MESSAGE);

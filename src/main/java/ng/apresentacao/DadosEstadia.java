@@ -4,17 +4,32 @@
  */
 package ng.apresentacao;
 
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
+import ng.negocio.Crianca;
+import ng.negocio.Estadia;
+import ng.negocio.Responsavel;
+
 /**
  *
  * @author narcisogomes
  */
 public class DadosEstadia extends javax.swing.JFrame {
 
+    private Crianca crianca;
+
     /**
      * Creates new form DadosEstadia
      */
     public DadosEstadia() {
         initComponents();
+    }
+
+    public DadosEstadia(Crianca crianca) {
+        initComponents();
+        this.crianca = crianca;
+        jtResponsavel.setText(crianca.getResponsavel().getNome());
+        jtCrianca.setText(crianca.getNome());
     }
 
     /**
@@ -28,12 +43,12 @@ public class DadosEstadia extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jtResponsavel = new javax.swing.JTextField();
-        jtNome = new javax.swing.JTextField();
-        jtIdade = new javax.swing.JTextField();
+        jtCrianca = new javax.swing.JTextField();
+        jtTempoUtilizado = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbCalcular = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,7 +57,7 @@ public class DadosEstadia extends javax.swing.JFrame {
 
         jtResponsavel.setEditable(false);
 
-        jtNome.setEditable(false);
+        jtCrianca.setEditable(false);
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel2.setText("Responsável: ");
@@ -53,10 +68,10 @@ public class DadosEstadia extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel4.setText("Tempo Utilizado:");
 
-        jButton1.setText("Calcular e Mostrar o Resumo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbCalcular.setText("Calcular e Mostrar o Resumo");
+        jbCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbCalcularActionPerformed(evt);
             }
         });
 
@@ -77,12 +92,12 @@ public class DadosEstadia extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtTempoUtilizado, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtCrianca, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtResponsavel, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jbCalcular)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -97,22 +112,47 @@ public class DadosEstadia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtCrianca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtTempoUtilizado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jbCalcular)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jbCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCalcularActionPerformed
+        Estadia estadia = new Estadia();
+        estadia.setCrianca(crianca);
+        try {
+            int tempoUtilizado = Integer.parseInt(jtTempoUtilizado.getText());
+            estadia.setTempoUtilizado(tempoUtilizado);
+            JOptionPane.showMessageDialog(null,
+                    "Dados da Estadia\n"
+                    + "Nome Responsável: " + estadia.getCrianca().getResponsavel().getNome() + "\n"
+                    + "CPF Responsável: " + estadia.getCrianca().getResponsavel().getCpf() + "\n"
+                    + "Telefone Responsável: " + estadia.getCrianca().getResponsavel().getTelefone() + "\n"
+                    + "Email Responsável: " + estadia.getCrianca().getResponsavel().getEmail() + "\n"
+                    + "Endereço Responsável: " + estadia.getCrianca().getResponsavel().getEndereco() + "\n"
+                    + "Idade Responsável: " + estadia.getCrianca().getResponsavel().getIdade() + "\n"
+                    + "Nome criança: " + estadia.getCrianca().getNome() + "\n"
+                    + "Idade criança: " + estadia.getCrianca().getIdade() + "\n"
+                    + "Sexo criança: " + estadia.getCrianca().getSexo() + "\n"
+                    + "Tempo no Brinquedo: " + estadia.getTempoUtilizado() + "\n"
+                    + "Valor a Pagar: " + estadia.getTotal() + "\n",
+                    "Dados Estadia", JOptionPane.INFORMATION_MESSAGE
+            );
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Tempo utilizado deve ser um número válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jbCalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,13 +190,13 @@ public class DadosEstadia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jtIdade;
-    private javax.swing.JTextField jtNome;
+    private javax.swing.JButton jbCalcular;
+    private javax.swing.JTextField jtCrianca;
     private javax.swing.JTextField jtResponsavel;
+    private javax.swing.JTextField jtTempoUtilizado;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,21 +9,10 @@ package ng.negocio;
  * @author narcisogomes
  */
 public class Estadia {
-
-    private Responsavel responsavel;
     private Crianca crianca;
-    private Integer tempoUtilizado;
-
-    public Responsavel getResponsavel() {
-        return responsavel;
-    }
-
-    public void setResponsavel(Responsavel responsavel) {
-        if (responsavel == null) {
-            throw new IllegalArgumentException("Responsavel não pode ser nulo");
-        }
-        this.responsavel = responsavel;
-    }
+    private int tempoUtilizado;
+    private double total;
+    private final Double VALOR_POR_MINUTO = 1.50;
 
     public Crianca getCrianca() {
         return crianca;
@@ -42,6 +31,27 @@ public class Estadia {
 
     public void setTempoUtilizado(Integer tempoUtilizado) {
         this.tempoUtilizado = tempoUtilizado;
+        setTotal();
     }
 
+    public Double getTotal() {
+        return total;
+    }
+
+    private void setTotal() {
+        double valorSemDesconto = VALOR_POR_MINUTO * tempoUtilizado;
+        double desconto = 0.0;
+
+        if (tempoUtilizado > 60) {
+            desconto = 0.15;
+        } else if (tempoUtilizado > 40) {
+            desconto = 0.10;
+        } else if (tempoUtilizado > 20) {
+            desconto = 0.05;
+        }
+
+        double valorComDesconto = valorSemDesconto - (valorSemDesconto * desconto);
+
+        total = valorComDesconto;
+    }
 }

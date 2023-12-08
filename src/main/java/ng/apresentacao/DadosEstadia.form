@@ -38,14 +38,14 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtIdade" alignment="0" min="-2" pref="316" max="-2" attributes="0"/>
-                          <Component id="jtNome" alignment="0" min="-2" pref="316" max="-2" attributes="0"/>
+                          <Component id="jtTempoUtilizado" alignment="0" min="-2" pref="316" max="-2" attributes="0"/>
+                          <Component id="jtCrianca" alignment="0" min="-2" pref="316" max="-2" attributes="0"/>
                           <Component id="jtResponsavel" alignment="0" min="-2" pref="316" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbCalcular" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -65,15 +65,15 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtCrianca" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtIdade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtTempoUtilizado" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="161" max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="jbCalcular" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -93,12 +93,12 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtNome">
+    <Component class="javax.swing.JTextField" name="jtCrianca">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtIdade">
+    <Component class="javax.swing.JTextField" name="jtTempoUtilizado">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -124,12 +124,12 @@
         <Property name="text" type="java.lang.String" value="Tempo Utilizado:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jbCalcular">
       <Properties>
         <Property name="text" type="java.lang.String" value="Calcular e Mostrar o Resumo"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCalcularActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
